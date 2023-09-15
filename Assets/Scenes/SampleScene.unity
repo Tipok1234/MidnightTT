@@ -423,6 +423,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Car
       objectReference: {fileID: 0}
+    - target: {fileID: 223787024152043761, guid: 438715e82f550c94ba9d6d06de66ff1f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 599222499587979851, guid: 438715e82f550c94ba9d6d06de66ff1f, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -466,6 +470,10 @@ PrefabInstance:
     - target: {fileID: 599222499587979851, guid: 438715e82f550c94ba9d6d06de66ff1f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 860979633262268772, guid: 438715e82f550c94ba9d6d06de66ff1f, type: 3}
+      propertyPath: useUI
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 438715e82f550c94ba9d6d06de66ff1f, type: 3}
