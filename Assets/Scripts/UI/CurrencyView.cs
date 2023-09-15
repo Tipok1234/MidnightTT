@@ -12,11 +12,15 @@ public class CurrencyView : MonoBehaviour
     public void AddCurency(int currency)
     {
         currentCurrency += currency;
+
+        SetCurrencyText();
     }
 
     public void RemoveCurrency(int price)
     {
         currentCurrency -= price;
+
+        SetCurrencyText();
     }
 
     public void SetCurrencyText()
