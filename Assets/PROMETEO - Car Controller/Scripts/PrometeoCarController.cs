@@ -784,13 +784,13 @@ public class PrometeoCarController : MonoBehaviour
         }
         if (driftingAxis > 1f)
         {
-            driftDuration += Time.deltaTime;
             driftingAxis = 1f;
         }
         //If the forces aplied to the rigidbody in the 'x' asis are greater than
         //3f, it means that the car lost its traction, then the car will start emitting particle systems.
         if (Mathf.Abs(localVelocityX) > 2.5f)
         {
+            driftDuration += Time.deltaTime;
             isDrifting = true;
         }
         else
@@ -802,6 +802,7 @@ public class PrometeoCarController : MonoBehaviour
         // = 1f.
         if (driftingAxis < 1f)
         {
+            Debug.LogError("2 : " + driftingAxis);
             FLwheelFriction.extremumSlip = FLWextremumSlip * handbrakeDriftMultiplier * driftingAxis;
             frontLeftCollider.sidewaysFriction = FLwheelFriction;
 
