@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using System.Threading.Tasks;
 
 public class GameScreen : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class GameScreen : MonoBehaviour
     [SerializeField] private CurrencyView currencyView;
 
     [SerializeField] private Button nextLevelButton;
+    [SerializeField] private Button doubleRewardButton;
 
     [SerializeField] private GameObject nextLevelPanel;
 
@@ -21,13 +23,14 @@ public class GameScreen : MonoBehaviour
     private float updateInterval = 0.2f;
 
     private float currentDriftTime = 0;
-    private float needDriftTimeLevel = 5;
+    private float needDriftTimeLevel = 2;
 
     private int addCurrency;
 
     private void Awake()
     {
         nextLevelButton.onClick.AddListener(NextLevelOnClick);
+        doubleRewardButton.onClick.AddListener(DoubleRewardOnClick);
     }
     private void Start()
     {
@@ -46,8 +49,9 @@ public class GameScreen : MonoBehaviour
     private void ShowDriftTime(float driftTime)
     {
         currentDriftTime += driftTime;
+        currencyView.AddCurency(Mathf.RoundToInt(driftTime));
 
-        if(currentDriftTime >= needDriftTimeLevel)
+        if (currentDriftTime >= needDriftTimeLevel)
         {
             NextLevel();
         }
@@ -61,16 +65,32 @@ public class GameScreen : MonoBehaviour
 
     public void NextLevel() 
     {
+        doubleRewardButton.gameObject.SetActive(true);
         nextLevelPanel.SetActive(true);
-        addCurencyText.text = "10";
-        currencyView.AddCurency(10);
+        addCurrency = 50;
+        addCurencyText.text = addCurrency.ToString() + " $";
+     
     }
+
+    public void DoubleRewardOnClick()
+    {
+        var doubleCurrency = addCurrency * 2;
+        addCurencyText.text = doubleCurrency.ToString() + " $";
+        addCurrency = doubleCurrency;
+
+        doubleRewardButton.gameObject.SetActive(false);
+    }
+
 
     private void NextLevelOnClick()
     {
         nextLevelPanel.SetActive(false);
         currentDriftTime = 0f;
         ShowDriftTime(0);
+
+        Debug.LogError("ADd: " + addCurrency);
+
+        currencyView.AddCurency(addCurrency);
     }
 
     private void Update()
