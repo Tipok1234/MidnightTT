@@ -4,14 +4,13 @@ using UnityEngine;
 
 public class ScrollViewManager : MonoBehaviour
 {
-    [SerializeField] private List<GameObject> details = new List<GameObject>();
     [SerializeField] private Transform child;
 
     [SerializeField] private DetailModelView detailModel;
 
     public void SetupScrollShopDetail()
     {
-        for (int i = 0; i < details.Count; i++)
+        for (int i = 0; i < 10; i++)
         {
             var newDetail = Instantiate(detailModel, child);
 

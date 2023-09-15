@@ -15,7 +15,6 @@ public class DetailModelView : MonoBehaviour
     private void Awake()
     {
         buyButton.onClick.AddListener(BuyDetail);
-
         selectedButton.onClick.AddListener(SelectDetail);
     }
 

@@ -11,6 +11,7 @@ something useful for your game. Best regards, Mena.
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -680,7 +681,6 @@ public class PrometeoCarController : MonoBehaviour
       // and, as a consequense, the car starts to emit trails to simulate the wheel skids.
       isTractionLocked = true;
       DriftCarPS();
-
     }
 
     // This function is used to emit both the particle systems of the tires' smoke and the trail renderers of the tire skids
