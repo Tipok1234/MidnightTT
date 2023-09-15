@@ -17,7 +17,7 @@ using UnityEngine.UI;
 
 public class PrometeoCarController : MonoBehaviour
 {
-
+    public static event Action<float> CurrentDriftTimeAction;
     //CAR SETUP
 
     [Space(20)]
@@ -159,9 +159,7 @@ public class PrometeoCarController : MonoBehaviour
     WheelFrictionCurve RRwheelFriction;
     float RRWextremumSlip;
 
-    private float driftStartTime = -1f;
-    private float driftEndTime = -1f;
-
+    private float driftDuration = 0f;
     private float lastUpdateTime = 0;
     private float updateInterval = 0.2f;
 
@@ -397,7 +395,8 @@ public class PrometeoCarController : MonoBehaviour
             }
             if (Input.GetKeyUp(KeyCode.Space))
             {
-                RecoverTraction();
+                if (CheckUpdate())
+                    RecoverTraction();
             }
             if ((!Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.W)))
             {
@@ -419,9 +418,17 @@ public class PrometeoCarController : MonoBehaviour
         // We call the method AnimateWheelMeshes() in order to match the wheel collider movements with the 3D meshes of the wheels.
         AnimateWheelMeshes();
 
-        if (Time.time - lastUpdateTime >= updateInterval)
+        if (CheckUpdate())
             CarSpeedUI();
 
+    }
+
+    private bool CheckUpdate()
+    {
+        if (Time.time - lastUpdateTime >= updateInterval)
+            return true;
+
+        return false;
     }
 
     // This method converts the car speed data from float to string, and then set the text of the UI carSpeedText with this value.
@@ -763,16 +770,7 @@ public class PrometeoCarController : MonoBehaviour
     // it is high, then you could make the car to feel like going on ice.
     public void Handbrake()
     {
-        if (!isDrifting && driftingAxis > 0.1f)
-        {
-            driftStartTime = Time.time;
-        }
-        else if (isDrifting && driftingAxis <= 0.1f)
-        {
-            driftEndTime = Time.time;
-        }
-
-
+       
         CancelInvoke("RecoverTraction");
         // We are going to start losing traction smoothly, there is were our 'driftingAxis' variable takes
         // place. This variable will start from 0 and will reach a top value of 1, which means that the maximum
@@ -786,6 +784,7 @@ public class PrometeoCarController : MonoBehaviour
         }
         if (driftingAxis > 1f)
         {
+            driftDuration += Time.deltaTime;
             driftingAxis = 1f;
         }
         //If the forces aplied to the rigidbody in the 'x' asis are greater than
@@ -818,6 +817,7 @@ public class PrometeoCarController : MonoBehaviour
 
         // Whenever the player uses the handbrake, it means that the wheels are locked, so we set 'isTractionLocked = true'
         // and, as a consequense, the car starts to emit trails to simulate the wheel skids.
+
         isTractionLocked = true;
         DriftCarPS();
     }
@@ -914,10 +914,6 @@ public class PrometeoCarController : MonoBehaviour
             RRwheelFriction.extremumSlip = RRWextremumSlip * handbrakeDriftMultiplier * driftingAxis;
             rearRightCollider.sidewaysFriction = RRwheelFriction;
 
-            float driftDuration = Time.time - driftEndTime;
-            Debug.LogError("Продолжительность дрифта: " + driftDuration + " секунд");
-
-
             Invoke("RecoverTraction", Time.deltaTime);
 
         }
@@ -935,6 +931,9 @@ public class PrometeoCarController : MonoBehaviour
             RRwheelFriction.extremumSlip = RRWextremumSlip;
             rearRightCollider.sidewaysFriction = RRwheelFriction;
 
+            CurrentDriftTimeAction?.Invoke(driftDuration);
+
+            driftDuration = 0f;
             driftingAxis = 0f;
         }
     }
