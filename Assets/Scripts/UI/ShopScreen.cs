@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,6 +11,8 @@ public class ShopScreen : MonoBehaviour
     [SerializeField] private Button exitShopScreenButton;
     [SerializeField] private ScrollViewManager scrollViewManager;
 
+    [SerializeField] private CurrencyView currencyView;
+
     private void Awake()
     {
         exitShopScreenButton.onClick.AddListener(ExitShopScreen);
@@ -18,7 +21,11 @@ public class ShopScreen : MonoBehaviour
     {
         StartScreen.OpenShopScreenAction += OnOpenShopScreen;
         scrollViewManager.SetupScrollShopDetail();
+
+
+        currencyView.SetCurrencyText();
     }
+
     private void OnDestroy()
     {
         StartScreen.OpenShopScreenAction -= OnOpenShopScreen;

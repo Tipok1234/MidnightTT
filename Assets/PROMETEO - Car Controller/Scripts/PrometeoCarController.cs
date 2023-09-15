@@ -802,7 +802,6 @@ public class PrometeoCarController : MonoBehaviour
         // = 1f.
         if (driftingAxis < 1f)
         {
-            Debug.LogError("2 : " + driftingAxis);
             FLwheelFriction.extremumSlip = FLWextremumSlip * handbrakeDriftMultiplier * driftingAxis;
             frontLeftCollider.sidewaysFriction = FLwheelFriction;
 

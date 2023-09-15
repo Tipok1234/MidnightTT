@@ -8,6 +8,8 @@ public class GameScreen : MonoBehaviour
     [SerializeField] private TMP_Text currentTimeDriftText;
     [SerializeField] private TMP_Text needDriftTimeLevelText;
 
+    [SerializeField] private CurrencyView currencyView;
+
     private float lastUpdateTime = 0;
     private float updateInterval = 0.2f;
 
@@ -17,6 +19,8 @@ public class GameScreen : MonoBehaviour
     private void Start()
     {
         PrometeoCarController.CurrentDriftTimeAction += ShowDriftTime;
+
+        currencyView.SetCurrencyText();
     }
 
     private void OnDestroy()
