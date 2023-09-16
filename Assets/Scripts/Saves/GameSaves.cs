@@ -12,19 +12,24 @@ public class GameSaves : MonoBehaviour
     public static int detailIndex;
     public static int currencyIndex;
 
-
     private void Awake()
     {
-        currencyIndex = 1000;
-        PlayerPrefs.SetInt(currencyKey, currencyIndex);
         levelIndex = PlayerPrefs.GetInt(levelKey);
         detailIndex = PlayerPrefs.GetInt(detailKey);
         currencyIndex = PlayerPrefs.GetInt(currencyKey);
 
+
+        Debug.LogError("LevelIndex: " + levelIndex);
     }
 
     public static void UpdateCurrency()
     {
         PlayerPrefs.SetInt(currencyKey, currencyIndex);
+    }
+
+    public static void UpdateLevel()
+    {
+        levelIndex += 1;
+        PlayerPrefs.SetInt(levelKey, levelIndex);
     }
 }

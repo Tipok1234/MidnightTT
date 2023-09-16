@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 public class GameScreen : MonoBehaviour
 {
+    [SerializeField] private TMP_Text levelText;
     [SerializeField] private TMP_Text speedText;
     [SerializeField] private TMP_Text currentTimeDriftText;
     [SerializeField] private TMP_Text needDriftTimeLevelText;
@@ -40,6 +41,8 @@ public class GameScreen : MonoBehaviour
 
         ShowDriftTime(0);
         currencyView.SetCurrencyText();
+
+        UpdateTextLevel();
     }
 
     private void Update()
@@ -98,19 +101,20 @@ public class GameScreen : MonoBehaviour
         doubleRewardButton.gameObject.SetActive(false);
     }
 
-
     private void NextLevelOnClick()
     {
         nextLevelPanel.SetActive(false);
         currentDriftTime = 0f;
         ShowDriftTime(0);
         currencyView.AddCurency(addCurrency);
-
         isStopGame = false;
-
+        GameSaves.UpdateLevel();
         GameManager.Instance.ChangeCar();
-        //GameManager.Instance.SetStartPosition();
+        UpdateTextLevel();
+    }
 
-        //GameSaves.UpdateCurrency(addCurrency);
+    private void UpdateTextLevel()
+    {
+        levelText.text = "level: " + (GameSaves.levelIndex + 1).ToString();
     }
 }
