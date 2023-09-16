@@ -2,45 +2,38 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraFollow : MonoBehaviour {
+public class CameraFollow : MonoBehaviour
+{
 
-	public Transform carTransform;
-	[Range(1, 10)]
-	public float followSpeed = 2;
-	[Range(1, 10)]
-	public float lookSpeed = 5;
-	Vector3 initialCameraPosition;
-	Vector3 initialCarPosition;
-	Vector3 absoluteInitCameraPosition;
+    public float followDistance;
+    public float followHeight;
+    public float lookAtHeight;
+    public float damping;
 
-	void Start()
-	{
-		SetupCarTransform();
+    private Vector3 offset;
+    private Transform carTransform;
 
-		initialCameraPosition = gameObject.transform.position;
-		initialCarPosition = carTransform.position;
-		absoluteInitCameraPosition = initialCameraPosition - initialCarPosition;
-	}
 
-	public void SetupCarTransform()
+    private void Start()
     {
-		carTransform = GameManager.Instance.Car.transform;
+        offset = new Vector3(0, followHeight, -followDistance);
+        carTransform = GameManager.Instance.Car.transform;
     }
 
-	void FixedUpdate()
-	{
-		if (carTransform == null)
-			return;
+    private void FixedUpdate()
+    {
+        if (!carTransform)
+        {
+            return;
+        }
 
-		//Look at car
-		Vector3 _lookDirection = (new Vector3(carTransform.position.x, carTransform.position.y, carTransform.position.z)) - transform.position;
-		Quaternion _rot = Quaternion.LookRotation(_lookDirection, Vector3.up);
-		transform.rotation = Quaternion.Lerp(transform.rotation, _rot, lookSpeed * Time.deltaTime);
+        Vector3 desiredPosition = carTransform.position + carTransform.TransformDirection(offset);
 
-		//Move to car
-		Vector3 _targetPos = absoluteInitCameraPosition + carTransform.transform.position;
-		transform.position = Vector3.Lerp(transform.position, _targetPos, followSpeed * Time.deltaTime);
+        transform.position = Vector3.Lerp(transform.position, desiredPosition, Time.deltaTime * damping);
 
-	}
+        Vector3 lookAtPosition = carTransform.position + Vector3.up * lookAtHeight;
+        transform.LookAt(lookAtPosition);
+
+    }
 
 }

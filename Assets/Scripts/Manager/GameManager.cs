@@ -41,7 +41,7 @@ public class GameManager : MonoBehaviour
             Car = Instantiate(lastCar.car,gameObject.transform);
         }
 
-        Car.transform.position = Vector3.zero;
+        Car.transform.position = new Vector3(0,0,-3f);
     }
 
     public async void ChangeCar()
