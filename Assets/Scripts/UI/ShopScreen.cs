@@ -10,7 +10,7 @@ public class ShopScreen : MonoBehaviour
 
     [SerializeField] private Button exitShopScreenButton;
     [SerializeField] private ScrollViewManager scrollViewManager;
-
+    [SerializeField] private Canvas canvas;
     [SerializeField] private CurrencyView currencyView;
 
     private void Awake()
@@ -34,13 +34,13 @@ public class ShopScreen : MonoBehaviour
     private void OnOpenShopScreen()
     {
         Debug.LogError("Open");
-        gameObject.SetActive(true);
+        canvas.enabled = true;
     }
 
     private void ExitShopScreen()
     {
         ExitShopScreenAction?.Invoke(true);
-        gameObject.SetActive(false);
+        canvas.enabled = false;
     }
 
 }

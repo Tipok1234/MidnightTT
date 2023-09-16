@@ -13,6 +13,8 @@ public class StartScreen : MonoBehaviour
     [SerializeField] private Button startGameButton;
     [SerializeField] private Button shopScreenButton;
 
+    [SerializeField] private Canvas canvas;
+
     private void Awake()
     {
         startGameButton.onClick.AddListener(StartGame);
@@ -32,7 +34,6 @@ public class StartScreen : MonoBehaviour
 
     private void StartGame()
     {
-        //StartGameAction?.Invoke();
         //SceneManager.LoadScene("Mobile Devices Demo");
         SceneManager.LoadScene("Demo");
     }
@@ -45,6 +46,6 @@ public class StartScreen : MonoBehaviour
 
     private void ActiveScreen(bool active)
     {
-        gameObject.SetActive(active);
+        canvas.enabled = active;
     }
 }
