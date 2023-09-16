@@ -13,12 +13,15 @@ MonoBehaviour:
   m_Name: DetailsConfig
   m_EditorClassIdentifier: 
   details:
-  - key: 1
+  - key: BlueColor
     price: 10
     detailSprite: {fileID: 21300000, guid: 70632ddfe8e71b04b8f90ef7e29a9e98, type: 3}
-  - key: 2
+    material: {fileID: 2100000, guid: 2a59a64f05af5d9488c9fec523939f31, type: 2}
+  - key: YellowColor
     price: 15
     detailSprite: {fileID: 21300000, guid: dae33700bd23f76409a80bf78fdb8a42, type: 3}
+    material: {fileID: 2100000, guid: 7e980050efd88014788bdae4038ce489, type: 2}
   - key: 3
     price: 20
     detailSprite: {fileID: 21300000, guid: 3a0c527d7f890d64a9b56b086e6e766a, type: 3}
+    material: {fileID: 2100000, guid: 90de09217e677c64a82889d24dad59c7, type: 2}

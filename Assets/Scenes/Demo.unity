@@ -3009,7 +3009,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8da682f9b3e660f429b1669dd7d15e5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  carModel: {fileID: 860979633262268772, guid: 438715e82f550c94ba9d6d06de66ff1f, type: 3}
+  carModel: {fileID: 6197965440680244008, guid: 438715e82f550c94ba9d6d06de66ff1f, type: 3}
+  config: {fileID: 11400000, guid: e73457d79a3626f4d9d3a47c528188b8, type: 2}
 --- !u!4 &1550778896
 Transform:
   m_ObjectHideFlags: 0

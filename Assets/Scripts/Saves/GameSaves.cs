@@ -15,17 +15,16 @@ public class GameSaves : MonoBehaviour
 
     private void Awake()
     {
+        currencyIndex = 1000;
+        PlayerPrefs.SetInt(currencyKey, currencyIndex);
         levelIndex = PlayerPrefs.GetInt(levelKey);
         detailIndex = PlayerPrefs.GetInt(detailKey);
         currencyIndex = PlayerPrefs.GetInt(currencyKey);
 
-
-        Debug.LogError("CurrencyIndex: " + currencyIndex);
     }
 
     public static void UpdateCurrency()
     {
         PlayerPrefs.SetInt(currencyKey, currencyIndex);
     }
-
 }

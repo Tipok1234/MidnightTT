@@ -6,8 +6,10 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
 
-    [SerializeField] private PrometeoCarController carModel;
-    public PrometeoCarController Car { get; private set; }
+    [SerializeField] private PlayerController carModel;
+    [SerializeField] private DetailsConfig config;
+    public PlayerController Car { get; private set; }
+    public DetailsConfig Config => config;
 
     private void Awake()
     {

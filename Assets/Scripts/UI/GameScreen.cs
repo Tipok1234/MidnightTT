@@ -48,7 +48,7 @@ public class GameScreen : MonoBehaviour
 
             if (speedText)
             {
-                speedText.text = GameManager.Instance.Car.currentSpeed.ToString();
+                speedText.text = GameManager.Instance.Car.CarController.currentSpeed.ToString();
             }
         }
     }
