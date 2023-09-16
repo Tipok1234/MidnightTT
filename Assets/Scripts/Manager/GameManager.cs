@@ -41,7 +41,7 @@ public class GameManager : MonoBehaviour
             Car = Instantiate(lastCar.car,gameObject.transform);
         }
 
-        Car.transform.position = new Vector3(0,0,-3f);
+        SetStartPosition();
     }
 
     public async void ChangeCar()
@@ -51,5 +51,13 @@ public class GameManager : MonoBehaviour
         await Task.Delay(300);
 
         StartGame();
+    }
+
+    public void SetStartPosition()
+    {
+        Car.transform.position = new Vector3(0, 0, -3f);
+        Car.transform.rotation = Quaternion.Euler(Vector3.zero);
+
+        Car.CarController.ResetSpeed();
     }
 }

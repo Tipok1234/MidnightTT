@@ -108,6 +108,9 @@ public class GameScreen : MonoBehaviour
 
         isStopGame = false;
 
+        GameManager.Instance.ChangeCar();
+        //GameManager.Instance.SetStartPosition();
+
         //GameSaves.UpdateCurrency(addCurrency);
     }
 }

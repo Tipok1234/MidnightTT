@@ -17,11 +17,14 @@ public class CameraFollow : MonoBehaviour
     private void Start()
     {
         offset = new Vector3(0, followHeight, -followDistance);
-        carTransform = GameManager.Instance.Car.transform;
+
     }
 
     private void FixedUpdate()
     {
+        if (GameManager.Instance.Car.CarController)
+            carTransform = GameManager.Instance.Car.transform;
+
         if (!carTransform)
         {
             return;

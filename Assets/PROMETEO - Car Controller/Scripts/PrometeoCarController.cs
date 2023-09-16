@@ -941,4 +941,9 @@ public class PrometeoCarController : MonoBehaviour
         }
     }
 
+    public void ResetSpeed() 
+    {
+        carSpeed = 0f;
+    }
+
 }
