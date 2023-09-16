@@ -40,6 +40,19 @@ public class GameScreen : MonoBehaviour
         currencyView.SetCurrencyText();
     }
 
+    private void Update()
+    {
+        if (Time.time - lastUpdateTime >= updateInterval)
+        {
+            lastUpdateTime = Time.time;
+
+            if (speedText)
+            {
+                speedText.text = GameManager.Instance.Car.currentSpeed.ToString();
+            }
+        }
+    }
+
     private void OnDestroy()
     {
 
@@ -88,18 +101,7 @@ public class GameScreen : MonoBehaviour
         currentDriftTime = 0f;
         ShowDriftTime(0);
         currencyView.AddCurency(addCurrency);
-    }
 
-    private void Update()
-    {
-        if (Time.time - lastUpdateTime >= updateInterval)
-        {
-            lastUpdateTime = Time.time;
-
-            if (speedText)
-            {
-                speedText.text = GameManager.Instance.Car.currentSpeed.ToString();
-            }
-        }
+        //GameSaves.UpdateCurrency(addCurrency);
     }
 }

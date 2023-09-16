@@ -7,24 +7,31 @@ public class CurrencyView : MonoBehaviour
 {
     [SerializeField] private TMP_Text currencyText;
 
-    private int currentCurrency = 100;
+    private void Start()
+    {
+        DetailModelView.BuyDetaAction += RemoveCurrency;
+    }
+
+    private void OnDestroy()
+    {
+        DetailModelView.BuyDetaAction -= RemoveCurrency;
+    }
 
     public void AddCurency(int currency)
     {
-        currentCurrency += currency;
-
+        GameSaves.currencyIndex += currency;
         SetCurrencyText();
     }
 
     public void RemoveCurrency(int price)
     {
-        currentCurrency -= price;
-
+        GameSaves.currencyIndex -= price;
         SetCurrencyText();
     }
 
     public void SetCurrencyText()
     {
-        currencyText.text = currentCurrency.ToString() + " $";
+        GameSaves.UpdateCurrency();
+        currencyText.text = GameSaves.currencyIndex + " $";
     }
 }
