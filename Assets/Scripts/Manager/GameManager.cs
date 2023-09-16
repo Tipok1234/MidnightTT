@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -24,7 +25,32 @@ public class GameManager : MonoBehaviour
     }
     private void Start()
     {
-        Car = Instantiate(carModel, gameObject.transform);
+        StartGame();
+    }
+
+    public void StartGame()
+    {
+        var lastCarKey = PlayerPrefs.GetString(DetailModelView.lastCarBuyKey);
+
+        if (string.IsNullOrEmpty(lastCarKey))
+        {
+            Car = Instantiate(Config.details[0].car, gameObject.transform);
+        }
+        else 
+        {
+            var lastCar = Config.GetDetail(lastCarKey);
+            Car = Instantiate(lastCar.car,gameObject.transform);
+        }
+
         Car.transform.position = Vector3.zero;
+    }
+
+    public async void ChangeCar()
+    {
+        Destroy(Car.gameObject);
+
+        await Task.Delay(300);
+
+        StartGame();
     }
 }

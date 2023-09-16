@@ -24,5 +24,6 @@ public class DetailsConfig : ScriptableObject
         public Sprite detailSprite;
 
         public Material material;
+        public PlayerController car;
     }
 }

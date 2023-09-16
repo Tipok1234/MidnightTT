@@ -204,13 +204,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxSpeed: 190
-  maxReverseSpeed: 45
-  accelerationMultiplier: 2
-  maxSteeringAngle: 27
-  steeringSpeed: 0.5
-  brakeForce: 350
+  maxReverseSpeed: 91
+  accelerationMultiplier: 8
+  maxSteeringAngle: 37
+  steeringSpeed: 0.795
+  brakeForce: 494
   decelerationMultiplier: 2
-  handbrakeDriftMultiplier: 5
+  handbrakeDriftMultiplier: 8
   bodyMassCenter: {x: 0, y: 0, z: 0}
   frontLeftMesh: {fileID: 1690178511272374944}
   frontLeftCollider: {fileID: 8060431850783115206}
@@ -236,10 +236,10 @@ MonoBehaviour:
   turnRightButton: {fileID: 0}
   turnLeftButton: {fileID: 0}
   handbrakeButton: {fileID: 0}
-  carSpeed: 0
+  carSpeed: 2.5818412
   isDrifting: 0
   isTractionLocked: 0
-  currentSpeed: 0
+  currentSpeed: 3
 --- !u!114 &6551957244430157933
 MonoBehaviour:
   m_ObjectHideFlags: 0

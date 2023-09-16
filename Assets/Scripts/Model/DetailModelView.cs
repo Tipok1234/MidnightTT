@@ -18,8 +18,10 @@ public class DetailModelView : MonoBehaviour
     [SerializeField] private Button selectedButton;
 
     private Detail detail;
-    public static string lastDetailBuyKey = "LastBuyDetail";
 
+    public static string lastDetailBuyKey = "LastBuyDetail";
+    public static string lastCarBuyKey = "LastCarBuy";
+    
     private void Awake()
     {
         buyButton.onClick.AddListener(BuyDetail);
@@ -34,6 +36,9 @@ public class DetailModelView : MonoBehaviour
         {
             RefreshButton();
         }
+
+        if (detail.price == 0)
+            RefreshButton();
 
         SetLastDetail();
     }
@@ -59,6 +64,13 @@ public class DetailModelView : MonoBehaviour
                 PlayerPrefs.SetString(lastDetailBuyKey, detail.key);
             }
 
+            if(detail.car != null)
+            {
+                PlayerPrefs.SetString(detail.key, detail.key);
+                PlayerPrefs.SetString(lastCarBuyKey, detail.key);
+                GameManager.Instance.Car.ModelView.SetColor(detail.material);
+                GameManager.Instance.ChangeCar();
+            }
 
             BuyDetaAction?.Invoke(detail.price);
         }
@@ -72,6 +84,12 @@ public class DetailModelView : MonoBehaviour
         {
             GameManager.Instance.Car.ModelView.SetColor(detail.material);
             PlayerPrefs.SetString(lastDetailBuyKey, detail.key);
+        }
+
+        if (detail.car != null)
+        {
+            PlayerPrefs.SetString(lastCarBuyKey, detail.key);
+            GameManager.Instance.ChangeCar();
         }
     }
 
