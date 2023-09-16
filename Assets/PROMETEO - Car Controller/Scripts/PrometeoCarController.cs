@@ -293,6 +293,8 @@ public class PrometeoCarController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (GameScreen.isStopGame)
+            return;
 
         //CAR DATA
 

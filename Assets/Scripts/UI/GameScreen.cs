@@ -27,6 +27,8 @@ public class GameScreen : MonoBehaviour
 
     private int addCurrency;
 
+    public static bool isStopGame;
+
     private void Awake()
     {
         nextLevelButton.onClick.AddListener(NextLevelOnClick);
@@ -78,6 +80,8 @@ public class GameScreen : MonoBehaviour
 
     public void NextLevel() 
     {
+        isStopGame = true;
+
         doubleRewardButton.gameObject.SetActive(true);
         nextLevelPanel.SetActive(true);
         addCurrency = 50;
@@ -101,6 +105,8 @@ public class GameScreen : MonoBehaviour
         currentDriftTime = 0f;
         ShowDriftTime(0);
         currencyView.AddCurency(addCurrency);
+
+        isStopGame = false;
 
         //GameSaves.UpdateCurrency(addCurrency);
     }
