@@ -87,9 +87,6 @@ public class GameScreen : MonoBehaviour
         nextLevelPanel.SetActive(false);
         currentDriftTime = 0f;
         ShowDriftTime(0);
-
-        Debug.LogError("ADd: " + addCurrency);
-
         currencyView.AddCurency(addCurrency);
     }
 

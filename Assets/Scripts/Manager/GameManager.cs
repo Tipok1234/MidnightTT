@@ -7,7 +7,6 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
 
     [SerializeField] private PrometeoCarController carModel;
-
     public PrometeoCarController Car { get; private set; }
 
     private void Awake()

@@ -471,6 +471,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   child: {fileID: 1563523671716845377}
   detailModel: {fileID: 2968059897101830990, guid: 5ef2032b99add284b89a22b782ad149a, type: 3}
+  config: {fileID: 11400000, guid: e73457d79a3626f4d9d3a47c528188b8, type: 2}
 --- !u!1 &1563523671505081878
 GameObject:
   m_ObjectHideFlags: 0

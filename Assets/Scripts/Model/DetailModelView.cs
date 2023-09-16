@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using static DetailsConfig;
 
 public class DetailModelView : MonoBehaviour
 {
@@ -11,6 +12,12 @@ public class DetailModelView : MonoBehaviour
     [SerializeField] private Image detailImage;
     [SerializeField] private Button buyButton;
     [SerializeField] private Button selectedButton;
+
+    //public DetailModelView(Detail detail)
+    //{
+    //    this.priceText.text = detail.price.ToString();
+    //    this.detailImage.sprite = detail.detailSprite;
+    //}
 
     private void Awake()
     {
@@ -28,10 +35,9 @@ public class DetailModelView : MonoBehaviour
 
     }
 
-    public void SetupDetail(int price)
+    public void SetupDetail(Detail detail)
     {
-        nameDetail.text = price.ToString();
-        priceText.text = price.ToString();
-        //detailImage.sprite =
+        priceText.text = detail.price.ToString();
+        detailImage.sprite = detail.detailSprite;
     }
 }
