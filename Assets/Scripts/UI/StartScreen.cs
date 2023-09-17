@@ -34,6 +34,8 @@ public class StartScreen : MonoBehaviourPunCallbacks
 
     private void Awake()
     {
+        GameScreen.isStopGame = true;
+
         startGameButton.onClick.AddListener(StartGame);
         shopScreenButton.onClick.AddListener(OpenShopScreen);
         //serverScreenButton.onClick.AddListener(ConnectServer);
@@ -58,6 +60,8 @@ public class StartScreen : MonoBehaviourPunCallbacks
     {
         //SceneManager.LoadScene("Mobile Devices Demo");
         SceneManager.LoadScene("Demo");
+
+        GameScreen.isStopGame = false;
     }
 
     private void OpenShopScreen()

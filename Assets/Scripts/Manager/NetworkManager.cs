@@ -20,6 +20,16 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
     public void OnlineGame()
     {
+        if (PhotonNetwork.NetworkClientState == ClientState.Disconnected)
+        {
+            PhotonNetwork.ConnectUsingSettings();
+        }
+        else
+        {
+            JoinRoom();
+        }
+
+
         PhotonNetwork.ConnectUsingSettings();
     }
 
@@ -27,23 +37,21 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     {
         Debug.LogError("Load");
 
-        RoomOptions roomOptions = new RoomOptions();
-        roomOptions.MaxPlayers = 2;
-        PhotonNetwork.CreateRoom("MyRoom", roomOptions);
+        if (!PhotonNetwork.InRoom)
+        {
+            Debug.LogError("Create....");
+            RoomOptions roomOptions = new RoomOptions();
+            roomOptions.MaxPlayers = 2;
+            PhotonNetwork.CreateRoom("MyRoom", roomOptions);
+        }
+        else
+            JoinRoom();
     }
 
-    public override void OnPlayerEnteredRoom(Player newPlayer)
-    {
-
-    }
-
-    public override void OnPlayerLeftRoom(Player otherPlayer)
-    {
-       
-    }
 
     public void JoinRoom()
     {
+        Debug.LogError("Join....");
         PhotonNetwork.JoinRoom("MyRoom");
     }
 

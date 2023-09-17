@@ -65,6 +65,11 @@ public class GameManager : MonoBehaviour
         SetStartPosition();
     }
 
+    //public void SetupButtonForCar(PrometeoTouchInput first, PrometeoTouchInput second, PrometeoTouchInput third, PrometeoTouchInput fourth, PrometeoTouchInput five)
+    //{
+    //    Car.CarController.SetupButton(first,second,third,fourth,five);
+    //}
+
     public async void ChangeCar()
     {
         Destroy(Car.gameObject);

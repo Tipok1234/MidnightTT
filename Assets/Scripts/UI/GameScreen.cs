@@ -30,23 +30,33 @@ public class GameScreen : MonoBehaviour
 
     public static bool isStopGame;
 
+    public PrometeoTouchInput throttlePTI;
+    public PrometeoTouchInput reversePTI;
+    public PrometeoTouchInput turnRightPTI;
+    public PrometeoTouchInput turnLeftPTI;
+    public PrometeoTouchInput handbrakePTI;
+
     private void Awake()
     {
         nextLevelButton.onClick.AddListener(NextLevelOnClick);
         doubleRewardButton.onClick.AddListener(DoubleRewardOnClick);
     }
+
     private void Start()
     {
         PrometeoCarController.CurrentDriftTimeAction += ShowDriftTime;
 
         ShowDriftTime(0);
         currencyView.SetCurrencyText();
-
         UpdateTextLevel();
     }
 
     private void Update()
     {
+        //if(gameObject.activeSelf == true)
+        //    GameManager.Instance.SetupButtonForCar(throttlePTI, reversePTI, turnRightPTI, turnLeftPTI, handbrakePTI);
+
+
         if (Time.time - lastUpdateTime >= updateInterval)
         {
             lastUpdateTime = Time.time;
