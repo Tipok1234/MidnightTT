@@ -20,58 +20,34 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
     public void OnlineGame()
     {
-        if (PhotonNetwork.NetworkClientState == ClientState.Disconnected)
-        {
-            PhotonNetwork.ConnectUsingSettings();
-        }
-        else
-        {
-            JoinRoom();
-        }
-
-
         PhotonNetwork.ConnectUsingSettings();
     }
 
     public override void OnConnectedToMaster()
     {
-        Debug.LogError("Load");
-
-        if (!PhotonNetwork.InRoom)
-        {
-            Debug.LogError("Create....");
-            RoomOptions roomOptions = new RoomOptions();
-            roomOptions.MaxPlayers = 2;
-            PhotonNetwork.CreateRoom("MyRoom", roomOptions);
-        }
-        else
-            JoinRoom();
+        RoomOptions roomOptions = new RoomOptions();
+        roomOptions.MaxPlayers = 4;
+        PhotonNetwork.JoinOrCreateRoom("MyRoom", roomOptions, TypedLobby.Default);
     }
 
 
     public void JoinRoom()
     {
-        Debug.LogError("Join....");
         PhotonNetwork.JoinRoom("MyRoom");
     }
 
     public override void OnJoinedRoom()
     {
-
         SceneManager.sceneLoaded += OnSceneLoaded;
-
         SceneManager.LoadScene("Demo");
-        Debug.LogError("Joined: ");
-
-        //GameManager.Instance.InstantiateOnlineCar();
-    }
+    }   
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         if (scene.name == "Demo")
         {
             GameManager.Instance.InstantiateOnlineCar();
-
+            GameScreen.isStopGame = false;
             SceneManager.sceneLoaded -= OnSceneLoaded;
         }
     }

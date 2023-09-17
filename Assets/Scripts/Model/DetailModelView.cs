@@ -104,5 +104,6 @@ public class DetailModelView : MonoBehaviour
         this.detail = detail;
         detailImage.sprite = detail.detailSprite;
         priceText.text = detail.price.ToString() + " $";
+        nameDetail.text = detail.key;
     }
 }

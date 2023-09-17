@@ -19,7 +19,6 @@ public class GameSaves : MonoBehaviour
         currencyIndex = PlayerPrefs.GetInt(currencyKey);
 
 
-        Debug.LogError("LevelIndex: " + levelIndex);
     }
 
     public static void UpdateCurrency()

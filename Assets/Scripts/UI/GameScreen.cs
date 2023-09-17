@@ -24,7 +24,7 @@ public class GameScreen : MonoBehaviour
     private float updateInterval = 0.2f;
 
     private float currentDriftTime = 0;
-    private float needDriftTimeLevel = 2;
+    private float needDriftTimeLevel = 120;
 
     private int addCurrency;
 

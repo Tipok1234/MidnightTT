@@ -33,7 +33,6 @@ public class ShopScreen : MonoBehaviour
 
     private void OnOpenShopScreen()
     {
-        Debug.LogError("Open");
         canvas.enabled = true;
     }
 

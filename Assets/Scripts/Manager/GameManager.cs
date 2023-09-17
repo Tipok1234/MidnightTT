@@ -15,6 +15,8 @@ public class GameManager : MonoBehaviour
 
     public AdsManager AdsManager => adsManager;
 
+    private int posX = -6;
+
     private void Awake()
     {
         if (Instance == null)
@@ -55,11 +57,13 @@ public class GameManager : MonoBehaviour
 
         if (string.IsNullOrEmpty(lastCarKey))
         {
+            Debug.LogError("Photon Instantiate");
             var newCar = PhotonNetwork.Instantiate(config.details[0].key, transform.position, Quaternion.identity);
             Car = newCar.GetComponent<PlayerController>();
         }
         else
         {
+            Debug.LogError("Photon Instantiate");
             var lastCar = Config.GetDetail(lastCarKey);
             var newCar = PhotonNetwork.Instantiate(lastCar.key, transform.position, Quaternion.identity);
             Car = newCar.GetComponent<PlayerController>();
@@ -87,9 +91,17 @@ public class GameManager : MonoBehaviour
 
     public void SetStartPosition()
     {
-        Car.transform.position = new Vector3(0, 0, -3f);
-        Car.transform.rotation = Quaternion.Euler(Vector3.zero);
+        if (PhotonNetwork.IsConnected)
+        {
+            Car.transform.position = new Vector3(posX, 0, -3);
+            posX += 4;
+        }
+        else
+        {
+            Car.transform.position = new Vector3(0, 0, -3);   
+        }
 
+        Car.transform.rotation = Quaternion.Euler(Vector3.zero);
         Car.CarController.ResetSpeed();
     }
 }
