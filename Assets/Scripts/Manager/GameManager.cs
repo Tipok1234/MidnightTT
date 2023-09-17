@@ -9,8 +9,11 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
 
     [SerializeField] private DetailsConfig config;
+    [SerializeField] private AdsManager adsManager;
     public PlayerController Car { get; private set; }
     public DetailsConfig Config => config;
+
+    public AdsManager AdsManager => adsManager;
 
     private void Awake()
     {

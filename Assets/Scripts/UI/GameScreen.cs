@@ -104,6 +104,8 @@ public class GameScreen : MonoBehaviour
 
     public void DoubleRewardOnClick()
     {
+        GameManager.Instance.AdsManager.ShowRewarded();
+
         var doubleCurrency = addCurrency * 2;
         addCurencyText.text = doubleCurrency.ToString() + " $";
         addCurrency = doubleCurrency;

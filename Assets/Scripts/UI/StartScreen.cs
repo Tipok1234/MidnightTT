@@ -38,7 +38,7 @@ public class StartScreen : MonoBehaviourPunCallbacks
 
         startGameButton.onClick.AddListener(StartGame);
         shopScreenButton.onClick.AddListener(OpenShopScreen);
-        //serverScreenButton.onClick.AddListener(ConnectServer);
+        //serverScreenButton.onClick.AddListener(ShowRewarded);
 
         onlineStart.onClick.AddListener(ConnectServer);
 
@@ -50,7 +50,6 @@ public class StartScreen : MonoBehaviourPunCallbacks
     {
         ShopScreen.ExitShopScreenAction += ActiveScreen;
     }
-
     private void OnDestroy()
     {
         ShopScreen.ExitShopScreenAction -= ActiveScreen;
