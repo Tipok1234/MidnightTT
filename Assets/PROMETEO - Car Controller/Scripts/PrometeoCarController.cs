@@ -428,15 +428,6 @@ public class PrometeoCarController : MonoBehaviour
         }
     }
 
-    //public void SetupButton(PrometeoTouchInput first, PrometeoTouchInput second, PrometeoTouchInput third, PrometeoTouchInput fourth, PrometeoTouchInput five)
-    //{
-    //    throttlePTI = first;//.GetComponent<PrometeoTouchInput>();
-    //    reversePTI = second;//.GetComponent<PrometeoTouchInput>();
-    //    turnRightPTI = third;//.GetComponent<PrometeoTouchInput>();
-    //    turnLeftPTI = fourth;//.GetComponent<PrometeoTouchInput>();
-    //    handbrakePTI = five;//.GetComponent<PrometeoTouchInput>
-    //}
-
 private bool CheckUpdate()
 {
     if (Time.time - lastUpdateTime >= updateInterval)

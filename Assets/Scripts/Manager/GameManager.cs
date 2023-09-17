@@ -72,10 +72,6 @@ public class GameManager : MonoBehaviour
         SetStartPosition();
     }
 
-    //public void SetupButtonForCar(PrometeoTouchInput first, PrometeoTouchInput second, PrometeoTouchInput third, PrometeoTouchInput fourth, PrometeoTouchInput five)
-    //{
-    //    Car.CarController.SetupButton(first,second,third,fourth,five);
-    //}
 
     public async void ChangeCar()
     {
@@ -91,16 +87,7 @@ public class GameManager : MonoBehaviour
 
     public void SetStartPosition()
     {
-        if (PhotonNetwork.IsConnected)
-        {
-            Car.transform.position = new Vector3(posX, 0, -3);
-            posX += 4;
-        }
-        else
-        {
-            Car.transform.position = new Vector3(0, 0, -3);   
-        }
-
+        Car.transform.position = new Vector3(0, 0, -3);
         Car.transform.rotation = Quaternion.Euler(Vector3.zero);
         Car.CarController.ResetSpeed();
     }

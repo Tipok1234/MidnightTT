@@ -19,9 +19,4 @@ public class CarModelView : MonoBehaviour
     {
         mesh.materials[0].color = material.color;
     }
-
-    public void GetCar()
-    {
-
-    }
 }

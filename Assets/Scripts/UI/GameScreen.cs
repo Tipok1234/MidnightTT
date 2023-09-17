@@ -30,6 +30,8 @@ public class GameScreen : MonoBehaviour
 
     public static bool isStopGame;
 
+
+    //TODO: for movile touch input
     public PrometeoTouchInput throttlePTI;
     public PrometeoTouchInput reversePTI;
     public PrometeoTouchInput turnRightPTI;
@@ -53,9 +55,6 @@ public class GameScreen : MonoBehaviour
 
     private void Update()
     {
-        //if(gameObject.activeSelf == true)
-        //    GameManager.Instance.SetupButtonForCar(throttlePTI, reversePTI, turnRightPTI, turnLeftPTI, handbrakePTI);
-
 
         if (Time.time - lastUpdateTime >= updateInterval)
         {
