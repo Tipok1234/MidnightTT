@@ -5,11 +5,13 @@ using System;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using Photon.Pun;
+using Photon.Realtime;
 
 public class StartScreen : MonoBehaviourPunCallbacks
 {
     //public static event Action StartGameAction;
     public static event Action OpenShopScreenAction;
+    public static event Action JoinOnlineGame;
 
     [SerializeField] private Button startGameButton;
     [SerializeField] private Button shopScreenButton;
@@ -20,18 +22,26 @@ public class StartScreen : MonoBehaviourPunCallbacks
     [SerializeField] private GameObject serverPanel;
 
     [Header("Setting Server Room")]
-    [SerializeField] private Button createRoom;
-    [SerializeField] private Button joinRoom;
-    [SerializeField] private Button exitButton;
 
-    [SerializeField] private InputField createField;
-    [SerializeField] private InputField joinField;
+    [SerializeField] private Button onlineStart;
+
+    //[SerializeField] private Button createRoom;
+    //[SerializeField] private Button joinRoom;
+    //[SerializeField] private Button exitButton;
+
+    //[SerializeField] private InputField createField;
+    //[SerializeField] private InputField joinField;
 
     private void Awake()
     {
         startGameButton.onClick.AddListener(StartGame);
         shopScreenButton.onClick.AddListener(OpenShopScreen);
-        serverScreenButton.onClick.AddListener(ConnectServer);
+        //serverScreenButton.onClick.AddListener(ConnectServer);
+
+        onlineStart.onClick.AddListener(ConnectServer);
+
+        //createRoom.onClick.AddListener(CreateRoom);
+        //joinRoom.onClick.AddListener(JoinRoom);
     }
 
     private void Start()
@@ -64,24 +74,40 @@ public class StartScreen : MonoBehaviourPunCallbacks
 
     private void ConnectServer()
     {
-        PhotonNetwork.ConnectUsingSettings();
+        JoinOnlineGame?.Invoke();  
     }
 
-    public override void OnConnectedToMaster()
-    {
-        Debug.LogError("Load");
+    //public override void OnConnectedToMaster()
+    //{
+    //    Debug.LogError("Load");
 
-        serverPanel.SetActive(true);
-    }
+    //    //serverPanel.SetActive(true);
 
 
-    public void CreateRoom()
-    {
+    //    RoomOptions roomOptions = new RoomOptions();
+    //    roomOptions.MaxPlayers = 2;
+    //    PhotonNetwork.CreateRoom(createField.text, roomOptions);
+    //}
 
-    }
 
-    public void JoinRoom()
-    {
+    //public void CreateRoom()
+    //{
+    //    RoomOptions roomOptions = new RoomOptions();
+    //    roomOptions.MaxPlayers = 2;
+    //    PhotonNetwork.CreateRoom(createField.text,roomOptions);
+    //}
 
-    }
+    //public void JoinRoom()
+    //{
+    //    PhotonNetwork.JoinRoom(joinField.text);
+    //}
+
+    //public override void OnJoinedRoom()
+    //{
+        
+    //    SceneManager.LoadScene("Demo");
+    //    Debug.LogError("Joined: " );
+
+    //    GameManager.Instance.InstantiateOnlineCar();
+    //}
 }

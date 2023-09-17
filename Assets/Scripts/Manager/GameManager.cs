@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
+using Photon.Pun;
 
 public class GameManager : MonoBehaviour
 {
@@ -24,7 +25,8 @@ public class GameManager : MonoBehaviour
     }
     private void Start()
     {
-        StartGame();
+        if (!PhotonNetwork.IsConnected)
+            StartGame();
     }
 
     public void StartGame()
@@ -35,10 +37,29 @@ public class GameManager : MonoBehaviour
         {
             Car = Instantiate(Config.details[0].car, gameObject.transform);
         }
-        else 
+        else
         {
             var lastCar = Config.GetDetail(lastCarKey);
-            Car = Instantiate(lastCar.car,gameObject.transform);
+            Car = Instantiate(lastCar.car, gameObject.transform);
+        }
+
+        SetStartPosition();
+    }
+
+    public void InstantiateOnlineCar()
+    {
+        var lastCarKey = PlayerPrefs.GetString(DetailModelView.lastCarBuyKey);
+
+        if (string.IsNullOrEmpty(lastCarKey))
+        {
+            var newCar = PhotonNetwork.Instantiate(config.details[0].key, transform.position, Quaternion.identity);
+            Car = newCar.GetComponent<PlayerController>();
+        }
+        else
+        {
+            var lastCar = Config.GetDetail(lastCarKey);
+            var newCar = PhotonNetwork.Instantiate(lastCar.key, transform.position, Quaternion.identity);
+            Car = newCar.GetComponent<PlayerController>();
         }
 
         SetStartPosition();
@@ -50,7 +71,10 @@ public class GameManager : MonoBehaviour
 
         await Task.Delay(300);
 
-        StartGame();
+        if (!PhotonNetwork.IsConnected)
+            StartGame();
+        else
+            InstantiateOnlineCar();
     }
 
     public void SetStartPosition()
