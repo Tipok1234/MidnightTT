@@ -3,19 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviourPun
+public class PlayerController : MonoBehaviour
 {
     public PrometeoCarController CarController;
     public CarModelView ModelView;
-
-
-    private void OnEnable()
-    {
-        if (photonView.IsMine)
-        {
-            CarController = GetComponent<PrometeoCarController>();
-            ModelView = GetComponent<CarModelView>();
-        }
-    }
-
+    public PhotonView photonView;   
 }

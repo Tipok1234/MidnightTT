@@ -16,7 +16,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Photon.Pun;
 
-public class PrometeoCarController : MonoBehaviourPun
+public class PrometeoCarController : MonoBehaviour
 {
     public static event Action<float> CurrentDriftTimeAction;
     //CAR SETUP
@@ -298,7 +298,7 @@ public class PrometeoCarController : MonoBehaviourPun
             return;
 
         //CAR DATA
-        if (photonView.IsMine || !photonView.IsMine)
+        if (GameManager.Instance.Car.photonView.IsMine || !GameManager.Instance.Car.photonView.IsMine)
         {
             // We determine the speed of the car.
             carSpeed = (2 * Mathf.PI * frontLeftCollider.radius * frontLeftCollider.rpm * 60) / 1000;

@@ -4,7 +4,7 @@ using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine.SceneManagement;
-
+using System.Threading.Tasks;
 
 public class NetworkManager : MonoBehaviourPunCallbacks
 {
@@ -30,19 +30,13 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         PhotonNetwork.JoinOrCreateRoom("MyRoom", roomOptions, TypedLobby.Default);
     }
 
-
-    public void JoinRoom()
-    {
-        PhotonNetwork.JoinRoom("MyRoom");
-    }
-
     public override void OnJoinedRoom()
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
         SceneManager.LoadScene("Demo");
     }   
 
-    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    private async void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         if (scene.name == "Demo")
         {
